@@ -1,0 +1,9 @@
+#!/bin/bash
+COMMERCE_SUITE_FILE=HYBRISCOMM6000P_7-80001481.zip
+RECIPE=b2c_acc
+DOCKER_IMAGE_NAME=ydocker-6007
+
+docker build \
+  --build-arg COMMERCE_SUITE_FILE="$COMMERCE_SUITE_FILE" \
+  --build-arg RECIPE="$RECIPE" \
+-t "$DOCKER_IMAGE_NAME" .
