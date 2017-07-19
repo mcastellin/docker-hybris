@@ -8,25 +8,23 @@ ARG RECIPE
 
 COPY ${COMMERCE_SUITE_FILE} /tmp/hybris-commerce-suite.zip
 
+# Installing prerequistes and collectd
 RUN \
 apt-get update && apt-get -y --no-install-recommends install \
     curl \
     unzip \
     lsof \
-    openjdk-8-jre
+    openjdk-8-jre \
+    collectd
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/
 
-RUN unzip /tmp/hybris-commerce-suite.zip -d /opt/
-RUN rm /tmp/hybris-commerce-suite.zip
+RUN unzip /tmp/hybris-commerce-suite.zip -d /opt/ \
+  && rm /tmp/hybris-commerce-suite.zip \
+  && /opt/installer/install.sh -r ${RECIPE}
 
-# install hybris recipe
-RUN /opt/installer/install.sh -r ${RECIPE}
-
-EXPOSE 8009 8010 9001 9002
-
-# Installing collectd
-RUN apt-get -y --no-install-recommends install collectd
+# No need to expose if running behind reverse proxy
+# EXPOSE 8009 8010 9001 9002
 
 # Setting entrypoint
 COPY entrypoint.sh /opt/entrypoint.sh
