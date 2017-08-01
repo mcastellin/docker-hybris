@@ -1,9 +1,15 @@
 #!/bin/bash
 cd /opt/hybris/bin/platform/
 
-. ./setantenv.sh && \
-  ant clean customize all
+. ./setantenv.sh
 
-# restart collectd with delay so it won't fail jmx:rmi connection
-(sleep 30 ; service collectd restart) &
+if [[ ! -z $ANT_TASKS ]]
+then
+  echo "Executing custom build tasks: $ANT_TASKS"
+  ant $ANT_TASKS
+else
+  echo "Executing default build tasks: clean all"
+  ant clean all
+fi
+
 ./hybrisserver.sh
