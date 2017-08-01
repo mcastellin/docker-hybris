@@ -1,30 +1,25 @@
-FROM ubuntu
-MAINTAINER Manuel Castellin (castellin.manuel@gmail.com)
+FROM ubuntu:16.04
+MAINTAINER Manuel Castellin (manuel@castellinconsulting.com)
 
-
-# input arguments required to access artifactory
+# input arguments
 ARG COMMERCE_SUITE_FILE
 ARG RECIPE
 
 COPY ${COMMERCE_SUITE_FILE} /tmp/hybris-commerce-suite.zip
 
-# Installing prerequistes and collectd
+# Installing prerequisites
 RUN \
 apt-get update && apt-get -y --no-install-recommends install \
     curl \
     unzip \
     lsof \
-    openjdk-8-jre \
-    collectd
+    openjdk-8-jre
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/
 
 RUN unzip /tmp/hybris-commerce-suite.zip -d /opt/ \
   && rm /tmp/hybris-commerce-suite.zip \
   && /opt/installer/install.sh -r ${RECIPE}
-
-# No need to expose if running behind reverse proxy
-# EXPOSE 8009 8010 9001 9002
 
 # Setting entrypoint
 COPY entrypoint.sh /opt/entrypoint.sh
