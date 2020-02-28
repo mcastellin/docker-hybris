@@ -48,16 +48,16 @@ mysql                               5.5                 33efe4d711c7        2 mo
 
 You can run your own codebase directly in the Hybris container with this setup:
 ```bash
-$ docker run -d --name <MY_CONTAINER_NAME> \
+$ docker run -d --user=hybrisuser --name <MY_CONTAINER_NAME> \
   -p 9001:9001 -p 9002:9002 \
-  -v $PWD/ydocker_data/:/opt/hybris/data/ \
+  -v $PWD/hybrisdata/:/opt/hybris/data/ \
   -v /path/to/hybris/bin/custom/:/opt/hybris/bin/custom/ \
-  -v /path/to/hybris/config/:/opt/hybris/config/:ro \
+  -v /path/to/hybris/config/:/opt/hybris/config/ \
   <DOCKER_IMAGE>:<TAG>
 ```
 Here is the command in details:
-* `docker run -d --name <MY_CONTAINER_NAME>` tells docker to run a new container from `<DOCKER_IMAGE>:<TAG>` image and name it `<MY_CONTAINER_NAME>`. `-d` option is to run our new container in background mode
+* `docker run -d --user=hybrisuser --name <MY_CONTAINER_NAME>` tells docker to run a new container from `<DOCKER_IMAGE>:<TAG>` image as a non-root user called 'hybrisuser' and name it `<MY_CONTAINER_NAME>`. 'hybrisuser' is part of the docker image, so don't change it.  `-d` option is to run our new container in background mode
 * `-p 9001:9001 -p 9002:9002` binds port 9001 of local machine to container's port 9001. Same applies for port 9002
-* `-v $PWD/ydocker_data/:/opt/hybris/data/` binds volume `/opt/hybris/data` with a local machine's folder `ydocker_data` in the current directory (you can specify any directory with its full path). This will store all data into the specified folder, preserving it even if you delete the container. If you need to recreate the container from scratch you can simply bind the same directory and have your data available.
+* `-v $PWD/hybrisdata/:/opt/hybris/data/` binds volume `/opt/hybris/data` with a local machine's folder `hybrisdata` in the current directory (you can specify any directory with its full path also). This will store all data into the specified folder, preserving it even if you delete the container. If you need to recreate the container from scratch you can simply bind the same directory and have your data available.
 * `-v /path/to/hybris/bin/custom/:/opt/hybris/bin/custom/` binds your `bin/custom` project directory with the same in the Hybris container. This option allows you to run your custom codebase inside the container
-* `-v /path/to/hybris/config/:/opt/hybris/config/:ro` binds your custom `config` directory with the same in the container. The `:ro` string means `read-only` and the container is not allowed to alter its content
+* `-v /path/to/hybris/config/:/opt/hybris/config/` binds your custom `config` directory with the same in the container.
