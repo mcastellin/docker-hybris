@@ -61,3 +61,6 @@ Here is the command in details:
 * `-v $PWD/hybrisdata/:/opt/hybris/data/` binds volume `/opt/hybris/data` with a local machine's folder `hybrisdata` in the current directory (you can specify any directory with its full path also). This will store all data into the specified folder, preserving it even if you delete the container. If you need to recreate the container from scratch you can simply bind the same directory and have your data available.
 * `-v /path/to/hybris/bin/custom/:/opt/hybris/bin/custom/` binds your `bin/custom` project directory with the same in the Hybris container. This option allows you to run your custom codebase inside the container
 * `-v /path/to/hybris/config/:/opt/hybris/config/` binds your custom `config` directory with the same in the container.
+
+# License
+This project is released under the [MIT License](LICENSE.md)
