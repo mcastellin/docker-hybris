@@ -1,0 +1,8 @@
+# When building the SAP Commerce base image, the bundled files to include in the container
+# are all under the `/target` directory. Hence the docker build context will ignore everything
+# except the files under `/target` directory.
+
+*
+
+# Exclude `target` directory from the ignored files
+!target/
