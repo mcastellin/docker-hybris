@@ -62,5 +62,22 @@ Here is the command in details:
 * `-v /path/to/hybris/bin/custom/:/opt/hybris/bin/custom/` binds your `bin/custom` project directory with the same in the Hybris container. This option allows you to run your custom codebase inside the container
 * `-v /path/to/hybris/config/:/opt/hybris/config/` binds your custom `config` directory with the same in the container.
 
+# Building SAP Commerce with the new build command
+We are implementing a new image build process for compatibility with the latest SAP Commerce versions and Java 11. 
+As part of the refactoring, the new build scripts will be more focused on creating images that can not only be used
+for local development but also in CI/CD pipelines.
+
+Here are some of the advantages:
+- Minimising docker image size to optimise transfer times between docker registries
+- Two-layered build. SAP Commerce customizations will build separately for faster image creation time
+
+## Building with the new build scripts
+You no longer need to copy the SAP Commerce bundle, you simply need to provide its path as a parameter to the new `bin/build_img.sh`.
+```bash
+bin/build.sh path/to/hybris/bundle.zip
+```
+
+> For now the build script supports SAP Commerce bundles as zip files.
+
 # License
 This project is released under the [MIT License](LICENSE.md)
