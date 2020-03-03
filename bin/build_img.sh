@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 #############################################################################################
 # Builds SAP Commerce Docker images 
@@ -9,39 +9,24 @@
 #   customizations and source code. This final image can actually run the SAP Commerce platform.
 #############################################################################################
 
-DOCKER_BASE_IMAGE_NAME=ybase
+BASEDIR="$(dirname "$0")/.."
+BASENAME=$(basename "$0")
+
 DOCKER_IMAGE_NAME=ycommerce
 DOCKER_IMAGE_TAG=latest
 
-# Mandatory parameters to run the build
-COMMERCE_BUNDLE_ZIPFILE=$1
-
-function bundle_installation() {
-  echo "Remving existing target directory..."
-  rm -rf target/ || true
-  mkdir target/
-
-  #TODO: check file actually exists
-  echo "Unpacking Hybris bundle ${COMMERCE_BUNDLE_ZIPFILE}"
-  unzip $COMMERCE_BUNDLE_ZIPFILE "hybris/*" -d target/
-  cp -r setup-bin target/
-}
-
-function build_base_image {
-  docker build \
-    -t ${DOCKER_BASE_IMAGE_NAME}:${DOCKER_IMAGE_TAG} \
-    .
-}
-
-if [ -z $COMMERCE_BUNDLE_ZIPFILE ]; then
+if [ -z $1 ]; then
   #TODO: provide help command if parameter missing??? 
   echo "Cannot build Hybris image. COMMERCE_BUNDLE_ZIPFILE argument is mandatory."
   return 1
+elif [[ "$1" = "help" || "$1" = "h" ]]; then
+  echo "
+TODO: should provide useful help section for this command in the future.
+  "
+  exit 0
 fi
-#TODO: check for installation bundle existence
 
-bundle_installation
-build_base_image
+$BASEDIR/ybase/build_img.sh $1
 
 #TODO: build actualy hybris image with customization
 
