@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+## Place here any custom installation instructions you may need to run your project
+
+## For example:
+# apt-get update && apt-get install --no-install-recommends -y curl gnupg2 lsof wget nano vim
+#
+# curl -sL https://deb.nodesource.com/setup_10.x | bash - &&
+#   apt-get install -y nodejs
+#
+# rm -rf /var/lib/apt/lists/*

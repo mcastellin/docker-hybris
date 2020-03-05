@@ -17,6 +17,7 @@ function bundle_installation() {
   echo "Unpacking Hybris bundle ${COMMERCE_BUNDLE_ZIPFILE}"
   unzip $COMMERCE_BUNDLE_ZIPFILE "hybris/*" -d $BASEDIR/target/
   cp -r $BASEDIR/setup-bin $BASEDIR/target/
+  cp -r $BASEDIR/custom-scripts $BASEDIR/target/
 }
 
 function build_base_image() {
