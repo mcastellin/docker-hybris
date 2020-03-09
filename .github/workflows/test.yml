@@ -9,5 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-      name: Test ybase image build
+      name: Checkout code
+    - name: Test ybase image build
       run: ybase/build_img.sh test/sap-commerce_testbundle.zip
