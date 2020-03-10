@@ -72,12 +72,23 @@ Here are some of the advantages:
 - Two-layered build. SAP Commerce customizations will build separately for faster image creation time
 
 ## Building with the new build scripts
-You no longer need to copy the SAP Commerce bundle, you simply need to provide its path as a parameter to the new `bin/build_img.sh`.
+To build the SAP Commerce image run the build script `bin/build_img.sh` and provide the path of the SAP Commerce bundle downloaded from SAP Marketplace.
+For example: 
 ```bash
 bin/build.sh path/to/hybris/bundle.zip
 ```
 
-> For now the build script supports SAP Commerce bundles as zip files.
+> For now the build script supports SAP Commerce bundles as zip files only.
+
+## Providing custom installation scripts
+If your SAP Commerce installation needs custom setup you can provide your own installation scripts in the `ybase/custom-scripts/` directory.
+The setup scripts will run during the docker build stage for the `ybase` image. They need to be provided as executable bash scripts with the `.sh` extension 
+and placed in the `ybase/custom-scripts/` directory.
+
+You can provide multiple installation scripts. If multiple `.sh` files are found in the `ybase/custom-scripts/` directory they will run in 
+order (e.g. `01_script.sh`, `02_script.sh`, `03_script.sh`, etcetera).
+
+A template script is provided in the `ybase/custom-scripts/` directory, you can copy the `01_custom-install.sh.template` and rename it so the extension is `.sh`.
 
 # License
 This project is released under the [MIT License](LICENSE.md)

@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+## 
+## This is a template script you can use to customize the ybase Docker image generation. 
+##
+#
+# echo "Installing custom dependencies"
+#
+## Installing NodeJS 10.x
+# apt-get update && apt-get install --no-install-recommends -y curl gnupg2 lsof wget vim
+#
+# curl -sL https://deb.nodesource.com/setup_10.x | bash - &&
+#   apt-get install -y nodejs
+#
+# rm -rf /var/lib/apt/lists/*
+
