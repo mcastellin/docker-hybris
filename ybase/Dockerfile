@@ -13,3 +13,7 @@ COPY --chown=hybris:hybris target/ /opt/
 RUN bash /opt/setup-bin/install.sh
 
 USER hybris
+
+WORKDIR /opt/hybris/bin/platform/
+
+ENTRYPOINT ["/opt/entrypoint.sh"]

@@ -4,5 +4,5 @@
 
 *
 
-# Exclude `target` directory from the ignored files
+## Exclude `target` directory from the ignored files
 !target/
