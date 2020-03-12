@@ -13,9 +13,6 @@ jobs:
     - name: Run all unit tests
       run: test/all_tests.sh
     - name: Dockerfile linting
-      uses: brpaz/hadolint-action@master
-      with: 
-        dockerfile
       run: |
         # Install hadolint
         wget -O hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 && chmod +x hadolint
