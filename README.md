@@ -1,4 +1,4 @@
-# docker-hybris
+# docker-hybris    ![Test](https://github.com/mcastellin/docker-hybris/workflows/Test/badge.svg)
 
 This project generates a docker image with a specific SAP Hybris Commerce, running on `ubuntu:16.04`. Please, note that **the generated container is not meant for productive environments**.
 
