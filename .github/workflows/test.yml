@@ -15,7 +15,7 @@ jobs:
     - name: Dockerfile linting
       run: |
         # Install hadolint
-        wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 &> /dev/null && chmod +x /bin/hadolint
+        wget -O /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 &> /dev/null && chmod +x /usr/local/bin/hadolint
         # Run linting
-        # ./hadolint test/do_lint.sh
+        # test/do_lint.sh
 
