@@ -1,5 +1,5 @@
 FROM openjdk:11-jdk-slim
-MAINTAINER Manuel Castellin (manuel@castellinconsulting.com)
+LABEL maintainer="manuel@castellinconsulting.com"
 
 ARG USERID="999"
 ARG GROUPID="999"
