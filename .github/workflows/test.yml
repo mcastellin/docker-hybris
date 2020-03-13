@@ -12,3 +12,12 @@ jobs:
       name: Checkout code
     - name: Run all unit tests
       run: test/all_tests.sh
+    - name: Dockerfile linting
+      run: |
+        # Install hadolint
+        mkdir ci-bin/
+        wget -O ci-bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 &> /dev/null && chmod +x ci-bin/hadolint
+        export PATH=$PATH:$PWD/ci-bin
+        # Run linting
+        test/do_lint.sh
+
